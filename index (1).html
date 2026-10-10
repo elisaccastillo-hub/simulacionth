@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kit Integral de Formatos de Talento Humano</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --mut: #64748b;
+            --ln: #dbe1ea;
+            --pri: #2b4acb;
+            --soft: #eef2ff;
+            --nav: #0e1a36
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0
+        }
+
+        body {
+            font: 14px/1.45 "Plus Jakarta Sans", system-ui, "Segoe UI", sans-serif;
+            background: #e9edf3;
+            color: var(--ink)
+        }
+
+        .app {
+            display: grid;
+            grid-template-columns: 300px 1fr
+        }
+
+        aside {
+            background: var(--nav);
+            color: #dbe4ff;
+            padding: 18px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        aside h1 {
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.25
+        }
+
+        aside h4 {
+            font-size: 12px;
+            color: #8fa3d9;
+            font-weight: 600;
+            margin-bottom: 6px
+        }
+
+        aside label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 8px
+        }
+
+        aside input,
+        aside select {
+            width: 100%;
+            margin-top: 3px;
+            padding: 7px 9px;
+            border-radius: 6px;
+            border: 1px solid #2a3a66;
+            background: #16254a;
+            color: #fff;
+            font: inherit
+        }
+
+        .nav button {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            text-align: left;
+            padding: 8px 10px;
+            border: 0;
+            border-radius: 6px;
+            background: none;
+            color: #cbd6f5;
+            font: inherit;
+            cursor: pointer
+        }
+
+        .nav button.on {
+            background: var(--pri);
+            color: #fff
+        }
+
+        .nav small {
+            opacity: .7;
+            min-width: 74px
+        }
+
+        .tools {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px
+        }
+
+        .btn {
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #2f4175;
+            background: #16254a;
+            color: #e6ecff;
+            font: inherit;
+            font-size: 13px;
+            cursor: pointer
+        }
+
+        .btn.p {
+            background: var(--pri);
+            border-color: var(--pri)
+        }
+
+        .btn.on {
+            background: #f5b82e;
+            color: #2a1c00;
+            border-color: #f5b82e
+        }
+
+        main {
+            padding: 24px;
+            display: flex;
+            justify-content: center
+        }
+
+        .sheet {
+            display: none;
+            background: #fff;
+            width: 100%;
+            max-width: 900px;
+            padding: 32px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px #0002, 0 8px 24px #0f172a14;
+            align-self: flex-start
+        }
+
+        .sheet.on {
+            display: block
+        }
+
+        .sh {
+            display: grid;
+            grid-template-columns: 20% 1fr 24%;
+            border: 1px solid var(--ln);
+            margin-bottom: 18px
+        }
+
+        .sh.sh-md {
+            grid-template-columns: 20% 1fr
+        }
+
+        .sh>div {
+            padding: 10px 12px;
+            border-right: 1px solid var(--ln);
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .sh>div:last-child {
+            border-right: 0
+        }
+
+        .sh-info {
+            font-size: 11px;
+            background: #f6f8fb
+        }
+
+        .lg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 65px;
+            padding: 4px !important;
+            width: 100%
+        }
+
+        .logo-upload {
+            width: 100%;
+            height: 100%;
+            min-height: 60px;
+            border: 1.5px dashed #94a3b8;
+            border-radius: 6px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: pointer;
+            color: #475569;
+            font-size: 11px;
+            font-weight: 600;
+            transition: .2s;
+            user-select: none;
+            padding: 4px;
+            text-align: center
+        }
+
+        .logo-upload:hover {
+            border-color: var(--pri);
+            background: #eef2ff;
+            color: var(--pri)
+        }
+
+        .logo-upload .logo-ico {
+            font-size: 16px;
+            line-height: 1
+        }
+
+        .logo-upload .logo-txt {
+            font-size: 10px
+        }
+
+        .logo-prev {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .logo-img {
+            max-height: 80px;
+            width: 100%;
+            max-width: 100%;
+            object-fit: contain
+        }
+
+        .logo-del {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #ef4444;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px #0003;
+            line-height: 1;
+            transition: .15s;
+            z-index: 2
+        }
+
+        .logo-del:hover {
+            background: #dc2626;
+            transform: scale(1.1)
+        }
+
+        .lg-name {
+            font-weight: 700;
+            color: var(--pri);
+            font-size: 13px;
+            letter-spacing: .3px;
+            margin-bottom: 2px
+        }
+
+        .tt {
+            text-align: center
+        }
+
+        .tt h2 {
+            font-size: 15px;
+            color: var(--pri)
+        }
+
+        .tt p {
+            font-size: 11px;
+            color: var(--mut)
+        }
+
+        .sec {
+            margin-top: 18px
+        }
+
+        .sec h3 {
+            font-size: 13px;
+            color: var(--pri);
+            border-left: 4px solid var(--pri);
+            padding-left: 8px;
+            margin-bottom: 10px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 16px
+        }
+
+        .full {
+            grid-column: 1/-1
+        }
+
+        .fd>label {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 3px
+        }
+
+        .sheet :is(input:not([type=radio], [type=checkbox]), select, textarea) {
+            width: 100%;
+            padding: 7px 9px;
+            border: 1px solid var(--ln);
+            border-radius: 6px;
+            font: inherit;
+            font-size: 13px;
+            background: #fff
+        }
+
+        .sheet textarea {
+            min-height: 64px;
+            resize: vertical
+        }
+
+        .sheet :is(input, select, textarea):focus {
+            outline: 2px solid var(--soft);
+            border-color: var(--pri)
+        }
+
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 14px
+        }
+
+        .opts label,
+        .ck {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--ink)
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        th {
+            background: var(--soft);
+            color: var(--pri);
+            font-size: 11px;
+            text-align: left
+        }
+
+        th,
+        td {
+            border: 1px solid var(--ln);
+            padding: 5px 7px;
+            font-size: 12px;
+            vertical-align: middle
+        }
+
+        td :is(input:not([type=radio], [type=checkbox]), select) {
+            border: 0 !important;
+            padding: 3px
+        }
+
+        .x {
+            width: 30px;
+            text-align: center
+        }
+
+        [contenteditable] {
+            outline: none;
+            display: block;
+            min-height: 1.3em
+        }
+
+        .edt {
+            background: #fff8dc;
+            outline: 1px dashed #e0b43a;
+            border-radius: 3px
+        }
+
+        .mini {
+            border: 0;
+            background: var(--soft);
+            color: var(--pri);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            padding: 1px 6px
+        }
+
+        .add {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 8px
+        }
+
+        .add .mini {
+            padding: 5px 10px;
+            font-size: 12px
+        }
+
+        .add select {
+            width: auto !important
+        }
+
+        .calc {
+            font-size: 12px;
+            color: var(--mut);
+            margin-left: auto
+        }
+
+        .bar {
+            display: inline-block;
+            width: 120px;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            vertical-align: middle;
+            overflow: hidden
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            background: #0f9d6b
+        }
+
+        .sigs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 28px;
+            margin-top: 36px
+        }
+
+        .sig-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center
+        }
+
+        .sig-box {
+            width: 100%;
+            height: 80px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 6px
+        }
+
+        .sig-upload {
+            width: 100%;
+            height: 100%;
+            border: 1.5px dashed #94a3b8;
+            border-radius: 6px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #475569;
+            font-size: 11px;
+            font-weight: 600;
+            transition: .2s;
+            user-select: none;
+            padding: 4px
+        }
+
+        .sig-upload:hover {
+            border-color: var(--pri);
+            background: #eef2ff;
+            color: var(--pri)
+        }
+
+        .sig-upload .sig-ico {
+            font-size: 18px;
+            line-height: 1
+        }
+
+        .sig-upload .sig-txt {
+            font-size: 11px
+        }
+
+        .sig-prev {
+            position: relative;
+            max-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .sig-img {
+            max-height: 76px;
+            max-width: 100%;
+            object-fit: contain
+        }
+
+        .sig-del {
+            position: absolute;
+            top: -4px;
+            right: -22px;
+            background: #ef4444;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px #0003;
+            line-height: 1;
+            transition: .15s
+        }
+
+        .sig-del:hover {
+            background: #dc2626;
+            transform: scale(1.1)
+        }
+
+        .sig-info {
+            width: 100%;
+            border-top: 1px solid #94a3b8;
+            padding-top: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center
+        }
+
+        .sig-info small {
+            display: block;
+            font-weight: 400;
+            color: var(--mut)
+        }
+
+        .note {
+            margin-left: 18px;
+            font-size: 12px
+        }
+
+        @media screen and (max-width:900px) {
+            .app {
+                grid-template-columns: 1fr
+            }
+
+            aside {
+                position: static;
+                height: auto
+            }
+
+            .grid,
+            .sigs,
+            .sh {
+                grid-template-columns: 1fr
+            }
+
+            main {
+                padding: 10px
+            }
+
+            .sheet {
+                padding: 16px
+            }
+        }
+
+        @media print {
+            @page {
+                size: letter portrait;
+                margin: 10mm 12mm 10mm 12mm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                box-sizing: border-box !important;
+            }
+
+            aside,
+            .noprint,
+            .sig-upload,
+            .sig-del,
+            .tools,
+            .add,
+            .mini,
+            .x,
+            .x2,
+            input[type="file"] {
+                display: none !important;
+            }
+
+            html,
+            body {
+                background: #fff !important;
+                color: var(--ink) !important;
+                font-family: "Plus Jakarta Sans", system-ui, "Segoe UI", sans-serif !important;
+                font-size: 12px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+            }
+
+            .app {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            main {
+                display: block !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+
+            .sheet {
+                display: none;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 0 20px 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                break-after: page;
+                page-break-after: always;
+            }
+
+            .sheet.on,
+            body.pall .sheet {
+                display: block !important;
+            }
+
+            /* Estructura del encabezado idéntica a pantalla (3 columnas) */
+            .sh {
+                display: grid !important;
+                grid-template-columns: 22% 1fr 24% !important;
+                border: 1px solid var(--ln) !important;
+                margin-bottom: 16px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .sh.sh-md {
+                grid-template-columns: 22% 1fr !important;
+            }
+
+            .sh>div {
+                padding: 8px 10px !important;
+                border-right: 1px solid var(--ln) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+            }
+
+            .sh>div:last-child {
+                border-right: 0 !important;
+            }
+
+            .sh-info {
+                font-size: 11px !important;
+                background: #f6f8fb !important;
+            }
+
+            .lg {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 60px !important;
+                padding: 2px !important;
+                width: 100% !important;
+            }
+
+            .logo-img {
+                max-height: 75px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                object-fit: contain !important;
+            }
+
+            .lg-name {
+                font-weight: 700 !important;
+                color: var(--pri) !important;
+                font-size: 12px !important;
+                margin-bottom: 2px !important;
+            }
+
+            .tt {
+                text-align: center !important;
+            }
+
+            .tt h2 {
+                font-size: 14px !important;
+                color: var(--pri) !important;
+                margin: 0 0 2px !important;
+            }
+
+            .tt p {
+                font-size: 11px !important;
+                color: var(--mut) !important;
+                margin: 0 !important;
+            }
+
+            /* Secciones */
+            .sec {
+                margin-top: 14px !important;
+                page-break-inside: auto !important;
+            }
+
+            .sec h3 {
+                font-size: 12px !important;
+                color: var(--pri) !important;
+                border-left: 4px solid var(--pri) !important;
+                padding-left: 8px !important;
+                margin-bottom: 8px !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            /* Cuadrícula de formulario (2 columnas idéntica a pantalla) */
+            .grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px 14px !important;
+            }
+
+            .full {
+                grid-column: 1 / -1 !important;
+            }
+
+            .fd {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .fd>label {
+                display: flex !important;
+                justify-content: space-between !important;
+                gap: 6px !important;
+                font-size: 11px !important;
+                font-weight: 600 !important;
+                color: #334155 !important;
+                margin-bottom: 2px !important;
+            }
+
+            /* Campos de entrada: conserva la estructura visual de cajas como en pantalla */
+            .sheet :is(input:not([type=radio], [type=checkbox]), select, textarea) {
+                width: 100% !important;
+                padding: 5px 8px !important;
+                border: 1px solid #cbd5e1 !important;
+                border-radius: 4px !important;
+                font: inherit !important;
+                font-size: 12px !important;
+                background: #fff !important;
+                color: var(--ink) !important;
+                appearance: none !important;
+                -webkit-appearance: none !important;
+            }
+
+            .sheet textarea {
+                min-height: 48px !important;
+                resize: none !important;
+            }
+
+            /* Opciones de radio y casillas */
+            .opts {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 6px 14px !important;
+            }
+
+            .opts label,
+            .ck {
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 5px !important;
+                font-size: 12px !important;
+                color: var(--ink) !important;
+            }
+
+            input[type="radio"],
+            input[type="checkbox"] {
+                appearance: auto !important;
+                -webkit-appearance: auto !important;
+                margin: 0 !important;
+            }
+
+            /* Tablas */
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                margin-top: 4px !important;
+                page-break-inside: auto !important;
+            }
+
+            th {
+                background: var(--soft) !important;
+                color: var(--pri) !important;
+                font-size: 11px !important;
+                font-weight: 700 !important;
+                border: 1px solid #cbd5e1 !important;
+                padding: 5px 6px !important;
+                text-align: left !important;
+            }
+
+            th,
+            td {
+                border: 1px solid #cbd5e1 !important;
+                padding: 4px 6px !important;
+                font-size: 11px !important;
+                vertical-align: middle !important;
+            }
+
+            tr {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            td :is(input:not([type=radio], [type=checkbox]), select) {
+                border: 0 !important;
+                padding: 2px !important;
+                background: transparent !important;
+                font-size: 11px !important;
+            }
+
+            /* Espacios para firmas idénticos a pantalla en horizontal */
+            .sigs {
+                display: grid !important;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+                gap: 20px !important;
+                margin-top: 28px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .sig-card {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .sig-box {
+                width: 100% !important;
+                height: 65px !important;
+                min-height: 65px !important;
+                border: none !important;
+                background: none !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                margin-bottom: 4px !important;
+            }
+
+            .sig-img {
+                max-height: 60px !important;
+                max-width: 100% !important;
+                object-fit: contain !important;
+            }
+
+            .sig-info {
+                width: 100% !important;
+                border-top: 1px solid #94a3b8 !important;
+                padding-top: 5px !important;
+                font-size: 11px !important;
+                font-weight: 600 !important;
+                text-align: center !important;
+            }
+
+            .sig-info small {
+                display: block !important;
+                font-weight: 400 !important;
+                font-size: 10px !important;
+                color: var(--mut) !important;
+            }
+
+            .calc {
+                font-size: 11px !important;
+                color: var(--mut) !important;
+            }
+
+            .bar {
+                display: inline-block !important;
+                width: 100px !important;
+                height: 7px !important;
+                background: #e2e8f0 !important;
+                border-radius: 4px !important;
+                overflow: hidden !important;
+            }
+
+            .bar i {
+                display: block !important;
+                height: 100% !important;
+                background: #0f9d6b !important;
+            }
+
+            .dp {
+                white-space: pre-wrap !important;
+                font-size: 12px !important;
+                line-height: 1.55 !important;
+                margin: 0 0 12px !important;
+            }
+        }
+
+        .nav h4 {
+            margin: 12px 0 4px;
+            color: #38bdf8
+        }
+
+        .fx {
+            font-weight: 600;
+            color: var(--pri)
+        }
+
+        summary {
+            outline: none
+        }
+
+        aside>* {
+            flex-shrink: 0
+        }
+
+        .nav {
+            display: block
+        }
+
+        .tools {
+            padding-bottom: 12px
+        }
+
+        .dp {
+            white-space: pre-wrap;
+            font-size: 13px;
+            line-height: 1.65;
+            margin: 0 0 14px;
+            position: relative
+        }
+
+        .x2 {
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
+        /* Celdas que se ajustan al tamaño del texto */
+        .sheet textarea.au,
+        .sheet textarea.ag {
+            display: block;
+            overflow: hidden;
+            resize: none;
+            overflow-wrap: anywhere
+        }
+
+        .sheet textarea.au {
+            min-height: 0
+        }
+
+        td textarea.au {
+            border: 0 !important;
+            padding: 3px
+        }
+
+        @media print {
+
+            .sheet textarea.au {
+                min-height: 0 !important
+            }
+
+            @supports (field-sizing: content) {
+
+                .sheet textarea.au,
+                .sheet textarea.ag {
+                    field-sizing: content !important;
+                    height: auto !important
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <aside id="side"></aside>
+        <main id="main"></main>
+    </div>
+    <input type="file" id="imp" accept=".json" hidden>
+    <script>
+        const K = 'th-kit-v4', mig = s => { const n = init().forms, L = { kit21: 21, kit22: 22 }; if (s && Array.isArray(s.forms) && L[s.id] == s.forms.length) { s.forms.push(...n.slice(s.forms.length)); s.id = 'kit32' } if (s && Array.isArray(s.forms) && s.forms[2] && s.forms[2].secs && s.forms[2].secs[3] && s.forms[2].secs[3].k == 'f') { s.forms[2].secs[3] = n[2].secs[3] } return s }, OK = s => s && Array.isArray(s.forms) && s.id == 'kit32' && s.forms.length == 32, TY = { tx: 'Texto', dt: 'Fecha', nu: 'Número', dl: 'Fecha y hora', em: 'Correo', ta: 'Párrafo', se: 'Lista', ra: 'Opción única', mu: 'Varias opciones', ck: 'Casilla' };
+        const CASES = [{ n: 'Caso A · Auxiliar Logístico (operativo)', p: { cargo: 'Auxiliar Logístico', area: 'Operaciones', contrato: 'Fijo', educ: 'Bachiller', exp: '6 meses en bodega o logística' } }, { n: 'Caso B · Analista Contable (táctico)', p: { cargo: 'Analista Contable', area: 'Finanzas', contrato: 'Indefinido', educ: 'Profesional en Contaduría', exp: '2 años en cargos contables' } }, { n: 'Caso C · Coordinador de Área (estratégico)', p: { cargo: 'Coordinador de Área', area: 'Gestión Humana', contrato: 'Indefinido', educ: 'Especialista', exp: '5 años, 2 liderando equipos' } }];
+        const f = (l, t = 'tx', x = {}) => ({ l, t, ...x }), F = (t, a) => ({ k: 'f', t, f: a }), TB = (t, c, r, x = {}) => ({ k: 't', t, c, r, ...x }),
+            tx = (k, l, x = {}) => ({ k, l, t: 'tx', ...x }), X = (k, l, w) => ({ k, l, t: 'x', w }), P = { k: 'p', l: 'Puntaje (1-5)', t: 'nu', mx: 5, w: '16%' },
+            sg = (...a) => a.map(s => s.split('|')), SR = (...a) => a.map(s => { const [a, b] = s.split('|'); return { a, b } }),
+            FM = (cat, short, n, title, sub, secs, sig = []) => ({ cat, short, code: 'TH-FR-' + n, title, sub, secs, sig }),
+            L5 = ['1', '2', '3', '4', '5'], A_ = 'Atracción & Selección', B_ = 'Contratación & Onboarding', C_ = 'Desempeño & Desarrollo', D_ = 'Estrategia & Bienestar',
+            ES = ['Filtro HV', 'Entrevista HR', 'Prueba Técnica', 'Exámenes Médicos'];
+        const D = (t, ...p) => ({ k: 'd', t, p }), MD = (s, n, t, sub, secs) => ({ ...FM('Modelos de Documentos', s, n, t, sub, secs), code: 'TH-MD-' + n });
+        const init = () => ({
+            id: 'kit32', empresa: 'EMPRESA S.A.S.', ver: '02', fecha: 'Oct 2026', shared: {}, forms: [
+                FM(A_, 'Requisición de Personal', '01', 'Requisición de Personal', 'Proceso de Selección y Contratación', [
+                    F('1. Datos generales de la solicitud', [f('Fecha de solicitud', 'dt'), f('Área / Departamento solicitante', 'tx', { b: 'area' }), f('Cargo solicitado', 'tx', { b: 'cargo' }), f('No. de vacantes', 'nu', { v: 1 }), f('Jefe inmediato', 'tx', { b: 'jefe' })]),
+                    F('2. Motivo de la requisición', [f('Causa principal', 'se', { o: ['Nueva Creación', 'Reemplazo / Retiro', 'Licencia / Incapacidad', 'Incremento Temporal'] }), f('Persona a reemplazar (si aplica)', 'tx', { ph: 'N/A si es nueva creación' })]),
+                    F('3. Condiciones contractuales', [f('Tipo de contrato', 'se', { b: 'contrato', o: ['Indefinido', 'Fijo', 'Obra o Labor', 'Aprendizaje'] }), f('Rango salarial asignado', 'tx', { ph: '$0.000.000' }), f('Horario / jornada', 'tx', { ph: 'Lunes a viernes 8am - 5pm' })]),
+                    F('4. Justificación y observaciones', [f('Justificación', 'ta', { full: 1, ph: 'Necesidad estratégica de cubrir la vacante…' })])],
+                    sg('Solicitante / Jefe de Área|Firma y fecha', 'Gestión Humana|Aprobación y validación', 'Gerencia General|Autorización presupuestal')),
+                FM(A_, 'Perfil de Cargos', '02', 'Perfil y Descripción de Cargo', 'Gestión por Competencias', [
+                    F('1. Identificación del cargo', [f('Nombre del cargo', 'tx', { b: 'cargo' }), f('Área a la que pertenece', 'tx', { b: 'area' }), f('Cargo del jefe inmediato'), f('Cargos que le reportan')]),
+                    F('2. Objetivo principal del cargo', [f('Objetivo', 'ta', { full: 1, ph: 'Propósito general del cargo…' })]),
+                    F('3. Requisitos mínimos (perfil)', [f('Nivel educativo', 'tx', { b: 'educ' }), f('Experiencia requerida', 'tx', { b: 'exp' }), f('Conocimientos técnicos clave', 'tx', { full: 1, ph: 'Software, certificaciones, idiomas' })]),
+                    TB('4. Responsabilidades principales', [X('a', 'No.', '8%'), tx('b', 'Función / responsabilidad'), { k: 'c', l: 'Frecuencia', t: 'se', o: ['Diaria', 'Semanal', 'Mensual'], w: '18%' }], [{ a: '1' }, { a: '2' }, { a: '3' }])]),
+                FM(A_, 'Hoja de Vida', '03', 'Hoja de Vida Estandarizada', 'Formato Único de Registro', [
+                    F('1. Datos personales', [f('Nombre completo', 'tx', { b: 'nombre' }), f('Documento de identidad', 'tx', { b: 'cc' }), f('Teléfono / celular'), f('Correo electrónico', 'em'), f('Ciudad de residencia')]),
+                    F('2. Perfil profesional', [f('Resumen', 'ta', { full: 1, ph: 'Habilidades, competencias y trayectoria…' })]),
+                    TB('3. Formación académica', [tx('a', 'Título obtenido'), tx('b', 'Institución'), tx('c', 'Año', { w: '12%' }), { k: 'd', l: 'Estado', t: 'se', o: ['Graduado', 'En curso'], w: '16%' }], [{}, {}]),
+                    TB('4. Experiencia laboral', [tx('a', 'Empresa'), tx('b', 'Cargo desempeñado'), { k: 'c', l: 'Fecha inicio', t: 'dt', w: '15%' }, { k: 'd', l: 'Fecha retiro', t: 'dt', w: '15%' }, tx('e', 'Jefe inmediato y teléfono')], [{}, {}])]),
+                FM(A_, 'Matriz Comparativa', '04', 'Matriz Comparativa de Candidatos', 'Evaluación Cuantitativa y Cualitativa', [
+                    F('Datos del proceso', [f('Cargo a proveer', 'tx', { b: 'cargo' }), f('Fecha de evaluación', 'dt')]),
+                    TB('Cuadro comparativo (calificación 1 a 5)', [X('a', 'Criterio de evaluación', '34%'), tx('c1', 'Candidato 1'), tx('c2', 'Candidato 2'), tx('c3', 'Candidato 3')],
+                        [{ a: 'Nombre del candidato' }, { a: 'Formación académica' }, { a: 'Experiencia específica' }, { a: 'Prueba técnica' }, { a: 'Entrevista por competencias' }, { a: 'Aspiración salarial vs presupuesto' }, { a: 'Puntaje total / concepto' }], { avgc: ['c1', 'c2', 'c3'] })]),
+                FM(A_, 'Verificación de Referencias', '05', 'Verificación de Referencias Laborales', 'Validación de Antecedentes', [
+                    F('Datos del candidato y empresa consultada', [f('Nombre del candidato', 'tx', { b: 'nombre' }), f('Cargo al que aspira', 'tx', { b: 'cargo' }), f('Empresa consultada'), f('Persona que brinda la referencia / cargo')]),
+                    F('Cuestionario de verificación', [f('¿Confirmación de fechas de ingreso y retiro?'), f('¿Motivo principal del retiro?'), f('¿Cómo evalúa su desempeño y cumplimiento de metas?', 'ta', { full: 1 }), f('Fortalezas principales'), f('Aspectos a mejorar'), f('¿Volvería a contratar a esta persona? ¿Por qué?', 'tx', { full: 1 })])]),
+                FM(A_, 'Base de Datos / Tracker', '06', 'Tracker de Candidatos y Banco de Hojas de Vida', 'Talent Pipeline y Control de Flujo', [
+                    TB('Registro de candidatos en proceso', [{ k: 'a', l: 'Fecha', t: 'dt', w: '14%' }, tx('b', 'Nombre'), tx('c', 'Teléfono / correo'), tx('d', 'Cargo de interés'), { k: 'e', l: 'Etapa', t: 'se', o: ES }, { k: 'f', l: 'Estado', t: 'se', o: ['En Proceso', 'Contratado', 'Descartado'] }], [{}, {}])]),
+                FM(A_, 'Entrevista Estructurada', '07', 'Guía de Entrevista Estructurada', 'Evaluación por Competencias STAR', [
+                    F('Datos de la sesión', [f('Candidato', 'tx', { b: 'nombre' }), f('Cargo al que aplica', 'tx', { b: 'cargo' })]),
+                    TB('Preguntas por competencia (STAR)', [X('a', 'Competencia', '25%'), X('b', 'Situación / pregunta indagadora'), P], SR('Trabajo en Equipo|Describa una situación difícil con un compañero y cómo la resolvió.', 'Orientación a Resultados|Mencione un proyecto complejo que haya liderado o entregado a tiempo.', 'Adaptabilidad al Cambio|¿Cómo reaccionó ante un cambio imprevisto en sus tareas habituales?'), { avg: 'p' })]),
+                FM(B_, 'Exámenes Médicos', '08', 'Remisión a Exámenes Ocupacionales', 'Seguridad y Salud en el Trabajo', [
+                    F('Datos del colaborador / candidato', [f('Nombre completo', 'tx', { b: 'nombre' }), f('Documento de cédula', 'tx', { b: 'cc' }), f('Cargo propuesto', 'tx', { b: 'cargo' }), f('Tipo de examen', 'se', { o: ['Ingreso / Pre-ocupacional', 'Periódico / Anual', 'Retiro / Egreso'] })]),
+                    F('Énfasis y pruebas requeridas', [f('Pruebas', 'mu', { full: 1, v: [], o: ['Examen físico ocupacional con énfasis osteomuscular', 'Visiometría / Optometría', 'Audiometría tonal', 'Exámenes de laboratorio (perfil lipídico, cuadro hemático)'] })])]),
+                FM(B_, 'Chequeo Documentos', '09', 'Lista de Chequeo de Documentación', 'Expediente de Contratación', [
+                    F('Datos del contratado', [f('Nombre del empleado', 'tx', { b: 'nombre' }), f('Fecha de contratación', 'dt', { b: 'ingreso' })]),
+                    TB('Documentos requeridos', [{ k: 'ok', l: 'Recibido', t: 'ck', tx: 'Sí', w: '11%' }, X('d', 'Documento'), tx('o', 'Observación', { w: '30%' })], ['Fotocopia de cédula ampliada al 150%', 'Hoja de vida actualizada y firmada', 'Certificados académicos (soporte)', 'Certificados laborales anteriores', 'Certificado de afiliación EPS y fondo de pensiones', 'Certificado de cuenta bancaria para nómina', 'Concepto médico ocupacional de aptitud'].map(d => ({ d })), { prog: 'ok' })]),
+                FM(B_, 'Entrega EPP y Dotación', '10', 'Control de Entrega de Dotación y EPP', 'Registro Individual de Entrega', [
+                    F('Datos del trabajador y tallas', [f('Nombre del trabajador', 'tx', { b: 'nombre' }), f('Cargo / Área', 'tx', { b: 'cargo' }), f('Talla camisa / polera'), f('Talla pantalón'), f('Talla calzado')]),
+                    TB('Elementos entregados', [{ k: 'a', l: 'Fecha', t: 'dt', w: '15%' }, tx('b', 'Elemento / dotación entregada'), { k: 'c', l: 'Cantidad', t: 'nu', w: '12%' }, tx('d', 'Motivo (ley / reposición)')], [{ b: 'Camisa uniforme corporativo', c: 1 }, { b: 'Zapatos de seguridad', c: 1 }])]),
+                FM(B_, 'Chequeo Inducción', '11', 'Lista de Chequeo de Inducción', 'Plan de Onboarding y Acogida', [
+                    F('Datos de inicio', [f('Empleado nuevo', 'tx', { b: 'nombre' }), f('Jefe inmediato / tutor', 'tx', { b: 'jefe' })]),
+                    TB('Módulos de inducción', [X('a', 'Módulo / tema'), X('b', 'Responsable', '20%'), { k: 'c', l: 'Fecha cumplida', t: 'dt', w: '16%' }, { k: 'e', l: 'Estado', t: 'se', o: ['Completado', 'Pendiente'], w: '16%' }],
+                        [{ a: 'Misión, visión, valores e historia', b: 'Talento Humano' }, { a: 'Reglamento interno de trabajo y beneficios', b: 'Talento Humano' }, { a: 'Inducción SG-SST y políticas de seguridad', b: 'Responsable SST' }, { a: 'Entrega de puesto y herramientas de trabajo', b: 'Jefe inmediato' }], { prog: 'e', pv: 'Completado' })]),
+                FM(B_, 'Control de Asistencia', '12', 'Control de Asistencia a Capacitación / Eventos', 'Registro de Formación y Participación', [
+                    F('Datos del evento', [f('Tema / nombre de la capacitación'), f('Fecha y hora', 'dl'), f('Capacitador / facilitador'), f('Duración (horas)', 'nu')]),
+                    TB('Registro de asistentes', [X('a', 'No.', '7%'), tx('b', 'Nombre del empleado'), tx('c', 'Cédula'), tx('d', 'Cargo / área'), tx('e', 'Firma / verificación', { ph: 'Asistió' })], [{ a: '1' }, { a: '2' }, { a: '3' }])]),
+                FM(B_, 'Satisfacción Inducción', '13', 'Encuesta de Satisfacción de Onboarding', 'Evaluación del Proceso de Ingreso', [
+                    TB('Evaluación de la experiencia (1: deficiente - 5: excelente)', [X('a', 'Criterio evaluado'), { ...P, w: '20%' }], SR('¿La información del proceso de selección fue clara y oportuna?', '¿Recibió a tiempo sus herramientas de trabajo el primer día?', '¿La inducción le ayudó a entender la cultura organizacional?', '¿El acompañamiento de su jefe inmediato ha sido adecuado?'), { avg: 'p' })]),
+                FM(C_, 'Evaluación Desempeño', '14', 'Evaluación del Desempeño Integral', 'Competencias y Objetivos KPIs', [
+                    F('Datos del evaluado', [f('Nombre del colaborador', 'tx', { b: 'nombre' }), f('Cargo', 'tx', { b: 'cargo' }), f('Jefe evaluador', 'tx', { b: 'jefe' }), f('Período evaluado', 'tx', { ph: 'Año 2026 / Semestre 1' })]),
+                    TB('Evaluación de competencias (escala 1 a 5)', [X('a', 'Competencia', '24%'), X('b', 'Descripción'), { ...P, l: 'Nota (1-5)' }], SR('Calidad de Trabajo|Precisión, exactitud y esmero en las tareas entregadas.', 'Proactividad e Iniciativa|Capacidad para proponer soluciones sin supervisión constante.', 'Trabajo en Equipo|Colaboración efectiva con pares y otras áreas.'), { avg: 'p' })]),
+                FM(C_, 'Plan de Mejoramiento', '15', 'Plan de Mejoramiento Individual (PMI)', 'Compromisos de Desempeño', [
+                    TB('Compromisos y acciones', [tx('a', 'Aspecto a mejorar'), tx('b', 'Acción específica'), { k: 'c', l: 'Fecha límite', t: 'dt', w: '16%' }, tx('d', 'Indicador de éxito')], [{}, {}])]),
+                FM(C_, 'Plan Capacitación (PAC)', '16', 'Plan Anual de Capacitación (PAC)', 'Programación Estratégica de Formación', [
+                    TB('Matriz de capacitaciones programadas', [tx('a', 'Nombre de la capacitación'), tx('b', 'Población objetivo'), tx('c', 'Mes de ejecución', { w: '16%' }), tx('d', 'Presupuesto', { w: '16%' })], [{ a: 'Liderazgo y Trabajo en Equipo', b: 'Jefes y Coordinadores', c: 'Marzo', d: '$2.500.000' }, { a: 'Seguridad de la Información', b: 'Todo el personal', c: 'Junio', d: '$1.200.000' }])]),
+                FM(C_, 'Satisfacción Capacitación', '17', 'Encuesta de Satisfacción de Evento de Capacitación', 'Evaluación de Efectividad Formativa', [
+                    F('Calificación del evento', [f('Capacitación evaluada'), f('Dominio del facilitador (1-5)', 'nu', { mx: 5 }), f('¿Cómo aplicará lo aprendido en su puesto de trabajo?', 'ta', { full: 1 })])]),
+                FM(D_, 'Presupuesto Anual TH', '18', 'Presupuesto Anual de Talento Humano', 'Planeación Financiera TH', [
+                    TB('Rubros y proyección presupuestal', [X('a', 'Rubro / programa'), tx('b', 'Presupuesto asignado', { w: '20%' }), tx('c', 'Ejecutado', { w: '20%' }), { k: 'd', l: 'Diferencia', t: 'f', f: ['b', 'c'], m: 1, w: '18%' }],
+                        [{ a: 'Atracción y reclutamiento (publicaciones, pruebas)', b: '$10.000.000' }, { a: 'Plan anual de capacitación', b: '$25.000.000' }, { a: 'Bienestar social y eventos', b: '$18.000.000' }, { a: 'Exámenes médicos ocupacionales', b: '$8.000.000' }], { tot: 1 })]),
+                FM(C_, 'Matriz de Brechas', '19', 'Matriz de Diagnóstico y Análisis de Brechas', 'Brechas de Competencias', [
+                    TB('Análisis de brechas por colaborador', [tx('a', 'Cargo / empleado'), tx('b', 'Competencia'), { k: 'c', l: 'Nivel requerido', t: 'se', o: L5, w: '13%' }, { k: 'd', l: 'Nivel actual', t: 'se', o: L5, w: '13%' }, { k: 'e', l: 'Brecha', t: 'f', f: ['d', 'c'], w: '10%' }],
+                        [{ a: 'Análisis de Datos', b: 'Excel Avanzado / Power BI', c: '4', d: '2' }, { a: 'Líder de Proyecto', b: 'Gestión del Tiempo', c: '5', d: '4' }])]),
+                FM(C_, 'Plan Desarrollo (PID)', '20', 'Plan Individual de Desarrollo (PID)', 'Plan de Carrera y Crecimiento', [
+                    F('Proyección de carrera', [f('Nombre del colaborador', 'tx', { b: 'nombre' }), f('Cargo actual', 'tx', { b: 'cargo' }), f('Cargo meta / proyectado'), f('Horizonte de tiempo', 'tx', { ph: '18 meses' })])]),
+                FM(D_, 'Plan de Bienestar', '21', 'Plan Maestro de Bienestar Social y Salario Emocional', 'Calidad de Vida Laboral', [
+                    TB('Programas e iniciativas de bienestar', [tx('a', 'Programa / evento'), tx('b', 'Eje de bienestar'), tx('c', 'Mes programado'), tx('d', 'Indicador')],
+                        [{ a: 'Celebración de cumpleaños y fechas especiales', b: 'Reconocimiento', c: 'Mensual', d: '% participación' }, { a: 'Semana de la salud y pausas activas', b: 'Salud integral', c: 'Octubre', d: '% cobertura' }, { a: 'Viernes flexibles / Día de la familia', b: 'Salario emocional', c: 'Semestral', d: 'Encuesta de clima' }])]),
+                FM(D_, 'Cronograma de Actividades', '22', 'Cronograma de Actividades de Talento Humano', 'Planeación y seguimiento por proceso', [TB('Cronograma de actividades por proceso', [X('a', 'Proceso', '15%'), X('b', 'Actividad'), { k: 'c', l: 'Fecha planeada', t: 'dt', w: '12%' }, { k: 'd', l: 'Fecha ejecutada', t: 'dt', w: '12%' }, tx('e', 'Responsable', { w: '12%' }), tx('f', 'Observaciones', { w: '14%' })], [["RECLUTAMIENTO", "Recibir la requisición de personal"], ["RECLUTAMIENTO", "Comparar con el perfil de cargo o manual de funciones"], ["RECLUTAMIENTO", "Definir el tipo de reclutamiento"], ["RECLUTAMIENTO", "Realizar la convocatoria"], ["RECLUTAMIENTO", "Recibir las hojas de vida"], ["RECLUTAMIENTO", "Analizar las hojas de vida"], ["RECLUTAMIENTO", "Diligenciar la base de datos de candidatos preseleccionados"], ["RECLUTAMIENTO", "Realizar el informe de resultados de reclutamiento y preselección"], ["SELECCIÓN", "Revisión informe de reclutamiento, base de datos y carpeta de inicio"], ["SELECCIÓN", "Verificación de referencia y antecedentes"], ["SELECCIÓN", "Definir las pruebas de selección"], ["SELECCIÓN", "Realizar entrevistas"], ["SELECCIÓN", "Realizar pruebas psicotécnicas y técnicas"], ["SELECCIÓN", "Realizar visita domiciliaria"], ["SELECCIÓN", "Programar exámenes médicos ocupacionales de ingreso"], ["SELECCIÓN", "Diligenciar la base de datos de candidatos seleccionados"], ["SELECCIÓN", "Realizar el informe corto de selección de candidatos"], ["VINCULACIÓN", "Presentar la oferta del cargo"], ["VINCULACIÓN", "Recibir la aceptación del cargo"], ["VINCULACIÓN", "Preparar los documentos para formalizar la relación laboral"], ["VINCULACIÓN", "Firmar contrato"], ["VINCULACIÓN", "Realizar afiliaciones"], ["VINCULACIÓN", "Entregar credenciales, dotación y Elementos de protección"], ["VINCULACIÓN", "Reportar para programación de inducción y capacitación inicial"], ["VINCULACIÓN", "Informe resultados contratación y vinculación de trabajadores"], ["INDUCCIÓN", "Definir y alistar las actividades de inducción"], ["INDUCCIÓN", "Realizar la bienvenida al trabajador"], ["INDUCCIÓN", "Realizar la inducción general"], ["INDUCCIÓN", "Realizar la inducción específica"], ["INDUCCIÓN", "Monitorear el progreso del empleado"], ["INDUCCIÓN", "Informe proceso de inducción"], ["E. DESEMPEÑO", "Definir los criterios de evaluación"], ["E. DESEMPEÑO", "Informar sobre el proceso de evaluación de desempeño"], ["E. DESEMPEÑO", "Recopilar información"], ["E. DESEMPEÑO", "Evaluar el desempeño del trabajador"], ["E. DESEMPEÑO", "Retroalimentar al trabajador"], ["E. DESEMPEÑO", "Establecer planes de mejora o reconocimientos"], ["E. DESEMPEÑO", "Hacer seguimiento del plan de mejoramiento"], ["E. DESEMPEÑO", "Informe actividades evaluación de desempeño"], ["CAPACITACIÓN", "Identificar necesidades de capacitación"], ["CAPACITACIÓN", "Definir presupuesto"], ["CAPACITACIÓN", "Diseñar plan de capacitación"], ["CAPACITACIÓN", "Crear recursos y contenidos- Cotizar proveedores"], ["CAPACITACIÓN", "Ejecutar las actividades"], ["CAPACITACIÓN", "Evaluar los resultados de la capacitación"], ["CAPACITACIÓN", "Informe actividades capacitación"], ["DESARROLLO", "Diagnosticar necesidades e identificar brechas de desarrollo"], ["DESARROLLO", "Definir plan de desarrollo-plan de carrera"], ["DESARROLLO", "Ejecutar el plan de desarrollo-plan de carrera"], ["DESARROLLO", "Hacer seguimiento al plan de desarrollo-plan de carrera"], ["DESARROLLO", "Informe actividades capacitación y desarrollo"], ["BIENESTAR", "Identificar necesidades de bienestar"], ["BIENESTAR", "Definir presupuesto"], ["BIENESTAR", "Diseñar plan, programa y cronograma de bienestar"], ["BIENESTAR", "Definir los participantes"], ["BIENESTAR", "Crear recursos y contenidos- Cotizar proveedores"], ["BIENESTAR", "Ejecutar las actividades"], ["BIENESTAR", "Realizar seguimiento a las actividades"], ["BIENESTAR", "Evaluar los resultados de las actividades"], ["BIENESTAR", "Informe actividades de bienestar"], ["BIENESTAR", "Actualización de expediente y bases de datos"]].map(([a, b]) => ({ a, b })), { prog: 'd' })]),
+                MD('Convocatoria', '01', 'Modelo de Convocatoria', 'Convocatoria externa para vacante', [
+                    D('Modelo de convocatoria externa',
+                        `[Empresa] abre convocatoria para vincular a su equipo de trabajo:`,
+                        `CARGO: [Cargo]\nÁREA: [Área]\nVACANTES: 1\nTIPO DE CONTRATO: [Tipo de contrato]\nLUGAR DE TRABAJO: Bogotá, Sede Principal\nSALARIO: [Rango salarial]`,
+                        `REQUISITOS\n• Formación: [Nivel educativo]\n• Experiencia: [Experiencia requerida]\n• Conocimientos: [Conocimientos técnicos]`,
+                        `FUNCIONES PRINCIPALES\n• [Función 1]\n• [Función 2]\n• [Función 3]`,
+                        `CÓMO APLICAR\nEnvíe su hoja de vida a seleccion@empresa.com con el asunto «Convocatoria – [Cargo]» antes del [Fecha de cierre].`,
+                        `Solo se contactará a los candidatos preseleccionados. Sus datos personales serán tratados conforme a la Ley 1581 de 2012.`)]),
+                MD('Correos de Citación', '02', 'Modelos de Correos de Citación', 'Entrevista, pruebas e inducción', [
+                    D('Correo 1 · Citación a entrevista',
+                        `Asunto: Citación a entrevista – [Cargo]\n\nEstimado(a) [Nombre del candidato]:\n\nGracias por su interés en [Empresa]. Lo(a) invitamos a una entrevista para el cargo de [Cargo]:\n\n• Fecha: [Fecha]\n• Hora: [Hora]\n• Lugar: [Dirección o enlace de la reunión]\n• Duración aproximada: 45 minutos\n\nPor favor lleve su documento de identidad y confirme su asistencia respondiendo este correo.\n\nCordialmente,\n[Responsable de Talento Humano]\nGestión Humana – [Empresa]`),
+                    D('Correo 2 · Citación a pruebas y exámenes médicos',
+                        `Asunto: Citación a pruebas y examen médico de ingreso\n\nEstimado(a) [Nombre del candidato]:\n\nFelicitaciones por avanzar en el proceso de selección para [Cargo]. Lo(a) citamos a:\n\n1. Pruebas psicotécnicas y técnicas: [Fecha y hora], en [Lugar].\n2. Examen médico ocupacional de ingreso: [Fecha y hora], en [IPS y dirección].\n\nTraiga su cédula y, si el laboratorio lo requiere, asista en ayunas.\n\nCordialmente,\n[Responsable de Talento Humano]\nGestión Humana – [Empresa]`),
+                    D('Correo 3 · Citación a inducción',
+                        `Asunto: Bienvenido(a) a [Empresa] – Citación a inducción\n\nEstimado(a) [Nombre del trabajador]:\n\nNos alegra contar con usted como [Cargo] en el área de [Área]. Su inducción inicia el [Fecha] a las [Hora] en [Lugar]. Su jefe inmediato, [Jefe inmediato], lo(a) recibirá.\n\nDocumentos a traer: cédula, certificado de cuenta bancaria y soportes de afiliación a EPS y pensión.\n\nCordialmente,\n[Responsable de Talento Humano]\nGestión Humana – [Empresa]`)]),
+                MD('Informe', '03', 'Modelo de Informe', 'Informe de resultados de reclutamiento y preselección', [
+                    D('1. Objetivo y alcance', `Presentar los resultados del proceso de reclutamiento y preselección para el cargo de [Cargo], área [Área], realizado entre el [Fecha de inicio] y el [Fecha de fin].`),
+                    TB('2. Resultados del proceso', [X('a', 'Etapa', '40%'), tx('b', 'Cantidad', { w: '15%' }), tx('c', 'Observaciones')], [{ a: 'Hojas de vida recibidas', b: '25' }, { a: 'Hojas de vida que cumplen el perfil', b: '12' }, { a: 'Candidatos preseleccionados', b: '5' }]),
+                    D('3. Conclusiones y recomendaciones', `Cinco candidatos cumplen el perfil y pasan a la etapa de selección. Se recomienda citarlos a entrevista en la semana del [Fecha] y verificar sus referencias antes de las pruebas.\n\nElaboró: [Responsable de Talento Humano]\nFecha: [Fecha]`)]),
+                MD('Contrato', '04', 'Modelo de Contrato de Trabajo', 'Contrato individual a término indefinido', [
+                    D('Contrato individual de trabajo a término indefinido',
+                        `CONTRATO INDIVIDUAL DE TRABAJO A TÉRMINO INDEFINIDO\n\nEMPLEADOR: [Empresa], NIT [NIT], representada por [Representante legal].\nTRABAJADOR: [Nombre del trabajador], C.C. [Cédula].\nCARGO: [Cargo] · ÁREA: [Área]\nFECHA DE INICIO: [Fecha de ingreso] · LUGAR: Bogotá, Sede Principal`,
+                        `PRIMERA – Objeto. El trabajador se obliga a prestar sus servicios personales en el cargo indicado, cumpliendo las funciones del perfil de cargo y las instrucciones de su jefe inmediato, [Jefe inmediato].`,
+                        `SEGUNDA – Remuneración. El empleador pagará un salario mensual de $[Valor], por periodos [quincenales / mensuales] vencidos, mediante consignación en la cuenta indicada por el trabajador.`,
+                        `TERCERA – Jornada. El trabajador laborará de lunes a viernes, de 8:00 a.m. a 5:00 p.m., dentro de la jornada máxima legal vigente.`,
+                        `CUARTA – Período de prueba. Se pacta un período de prueba de [dos (2) meses], dentro del cual cualquiera de las partes podrá terminar el contrato sin previo aviso, conforme al Código Sustantivo del Trabajo.`,
+                        `QUINTA – Confidencialidad. El trabajador guardará reserva sobre la información interna y de clientes a la que tenga acceso, durante y después de la relación laboral.`,
+                        `SEXTA – Seguridad social. El empleador afiliará al trabajador a EPS, pensiones, ARL y caja de compensación, y el trabajador cumplirá las normas de seguridad y salud en el trabajo.`,
+                        `En constancia se firma en Bogotá, el [Fecha], en dos ejemplares.\n\n\n______________________          ______________________\nEL EMPLEADOR                            EL TRABAJADOR`,
+                        `Nota: modelo de referencia. Debe ser revisado por asesoría jurídica antes de su uso.`)]),
+                MD('Inventario Capacitación', '05', 'Modelo de Inventario de Necesidades de Capacitación', 'Diagnóstico por área y cargo', [
+                    D('Instrucciones', `Diligencie una fila por necesidad. Priorice según el impacto en los objetivos del área y el riesgo legal. Este inventario alimenta el Plan Anual de Capacitación (TH-FR-16).`),
+                    TB('Inventario de necesidades de capacitación', [tx('a', 'Área', { w: '12%' }), tx('b', 'Cargo', { w: '15%' }), tx('c', 'Necesidad detectada'), tx('d', 'Tema de capacitación'), { k: 'e', l: 'Prioridad', t: 'se', o: ['Alta', 'Media', 'Baja'], w: '11%' }, { k: 'f', l: 'Fuente', t: 'se', o: ['Evaluación de desempeño', 'Encuesta', 'Jefe inmediato', 'Normatividad'], w: '15%' }],
+                        [{ a: 'Finanzas', b: 'Analista Contable', c: 'Errores en conciliaciones por manejo limitado de herramientas', d: 'Excel avanzado', e: 'Alta', f: 'Evaluación de desempeño' }, { a: 'Operaciones', b: 'Auxiliar Logístico', c: 'Cumplimiento de requisitos de seguridad en bodega', d: 'Manejo seguro de cargas y uso de EPP', e: 'Alta', f: 'Normatividad' }, { a: 'Todas', b: 'Jefes y coordinadores', c: 'Dificultad para dar retroalimentación', d: 'Liderazgo y comunicación asertiva', e: 'Media', f: 'Encuesta' }])]),
+                MD('Informe Necesidades Bienestar', '06', 'Modelo de Informe de Necesidades de Bienestar', 'Diagnóstico para el programa de bienestar', [
+                    D('1. Objetivo y metodología', `Identificar las necesidades de bienestar del personal de [Empresa] para diseñar el programa del año [Año]. Se aplicó una encuesta a [N] trabajadores y se entrevistó a los líderes de área.`),
+                    TB('2. Necesidades identificadas (datos de ejemplo)', [tx('a', 'Dimensión', { w: '16%' }), tx('b', 'Necesidad identificada'), tx('c', '% del personal', { w: '12%' }), tx('d', 'Actividad propuesta')], [{ a: 'Salud física', b: 'Dolores musculares por trabajo en escritorio', c: '48%', d: 'Pausas activas semanales' }, { a: 'Salud mental', b: 'Estrés por cargas de trabajo en los cierres', c: '35%', d: 'Taller de manejo del estrés' }, { a: 'Familia y recreación', b: 'Poco tiempo para compartir en familia', c: '62%', d: 'Día de la familia y viernes flexibles' }]),
+                    D('3. Conclusiones', `Las necesidades con mayor porcentaje son familia y recreación, y salud física. Se recomienda priorizarlas en el Plan de Bienestar (TH-FR-21) y asignarles presupuesto en el rubro correspondiente (TH-FR-18).\n\nElaboró: [Responsable de Talento Humano]\nFecha: [Fecha]`)]),
+                MD('Cartas', '07', 'Modelos de Cartas', 'Oferta, certificación laboral y respuesta a candidatos', [
+                    D('Carta 1 · Oferta laboral', `[Ciudad], [Fecha]\n\nSeñor(a)\n[Nombre del candidato]\nCiudad\n\nAsunto: Oferta laboral – [Cargo]\n\nEstimado(a) [Nombre del candidato]:\n\nEs un gusto comunicarle que fue seleccionado(a) para el cargo de [Cargo] en [Empresa]. Las condiciones son: contrato [Tipo de contrato], salario de $[Valor] mensuales, jornada de lunes a viernes e ingreso el [Fecha de ingreso].\n\nAgradecemos confirmar su aceptación por escrito antes del [Fecha límite].\n\nCordialmente,\n[Representante legal]\n[Empresa]`),
+                    D('Carta 2 · Certificación laboral', `[Ciudad], [Fecha]\n\nA QUIEN PUEDA INTERESAR\n\n[Empresa] certifica que [Nombre del trabajador], identificado(a) con C.C. [Cédula], labora en la compañía desde el [Fecha de ingreso], desempeñando el cargo de [Cargo], con contrato [Tipo de contrato] y salario mensual de $[Valor].\n\nSe expide a solicitud del interesado(a).\n\nAtentamente,\n[Responsable de Talento Humano]\nGestión Humana – [Empresa]`),
+                    D('Carta 3 · Respuesta a candidato no seleccionado', `[Ciudad], [Fecha]\n\nEstimado(a) [Nombre del candidato]:\n\nAgradecemos su participación en el proceso para el cargo de [Cargo]. En esta ocasión seleccionamos a otro candidato cuyo perfil se ajustó más a los requisitos. Con su autorización, conservaremos su hoja de vida en nuestro banco de talento para futuras oportunidades.\n\nCordialmente,\n[Responsable de Talento Humano]\nGestión Humana – [Empresa]`)]),
+                MD('Memorandos', '08', 'Modelos de Memorandos', 'Memorando informativo y llamado de atención', [
+                    D('Memorando 1 · Informativo', `MEMORANDO N.° [Número]\n\nPARA: [Destinatario o área]\nDE: Gestión Humana\nFECHA: [Fecha]\nASUNTO: Jornada de inducción y capacitación\n\nSe informa que el [Fecha] a las [Hora] se realizará la jornada de inducción en [Lugar]. La asistencia es obligatoria para el personal que ingresó durante el mes. Los jefes inmediatos deben facilitar la participación.\n\nCordialmente,\n[Responsable de Talento Humano]`),
+                    D('Memorando 2 · Llamado de atención', `MEMORANDO N.° [Número]\n\nPARA: [Nombre del trabajador] – [Cargo]\nDE: [Jefe inmediato]\nCOPIA: Gestión Humana (hoja de vida)\nFECHA: [Fecha]\nASUNTO: Llamado de atención por incumplimiento de horario\n\nSe registraron llegadas tarde los días [Fechas], lo que incumple el artículo [Número] del Reglamento Interno de Trabajo. Se le solicita cumplir el horario establecido durante los próximos 30 días.\n\nUsted puede presentar por escrito sus explicaciones o descargos. Cualquier medida disciplinaria posterior debe seguir el procedimiento del Reglamento Interno de Trabajo.\n\nRecibido: ______________________   Fecha: __________`)]),
+                MD('Plan', '09', 'Modelo de Plan', 'Plan anual de capacitación', [
+                    D('1. Objetivo', `Fortalecer las competencias técnicas y comportamentales del personal de [Empresa] durante [Año], de acuerdo con el inventario de necesidades de capacitación (TH-MD-05).`),
+                    TB('2. Actividades del plan', [tx('a', 'Objetivo específico', { w: '20%' }), tx('b', 'Actividad'), tx('c', 'Responsable', { w: '13%' }), tx('d', 'Fecha', { w: '10%' }), tx('e', 'Presupuesto', { w: '13%' }), tx('f', 'Indicador', { w: '16%' })], [{ a: 'Mejorar el manejo de herramientas', b: 'Curso de Excel avanzado (16 horas)', c: 'Talento Humano', d: 'Marzo', e: '$2.000.000', f: 'Asistencia y nota ≥ 4,0' }, { a: 'Prevenir accidentes', b: 'Taller de manejo seguro de cargas', c: 'Coordinador SST', d: 'Mayo', e: '$800.000', f: 'Cobertura del 100% de bodega' }, { a: 'Fortalecer el liderazgo', b: 'Taller de comunicación asertiva', c: 'Talento Humano', d: 'Agosto', e: '$1.500.000', f: 'Satisfacción ≥ 4,0' }]),
+                    D('3. Seguimiento', `El plan se evalúa cada trimestre. Indicador general de cumplimiento = actividades ejecutadas ÷ actividades programadas × 100.`)]),
+                MD('Programa', '10', 'Modelo de Programa', 'Programa de inducción de la primera semana', [
+                    D('1. Objetivo', `Facilitar la integración del nuevo trabajador a [Empresa], a su cargo y a su equipo durante la primera semana de trabajo.`),
+                    TB('2. Agenda del programa', [tx('a', 'Día / hora', { w: '15%' }), tx('b', 'Tema'), tx('c', 'Responsable', { w: '18%' }), tx('d', 'Duración', { w: '11%' })], [{ a: 'Día 1 · 8:00', b: 'Bienvenida, misión, visión, valores y recorrido por la sede', c: 'Talento Humano', d: '2 h' }, { a: 'Día 1 · 10:30', b: 'Reglamento Interno de Trabajo, beneficios y entrega de carné', c: 'Talento Humano', d: '1,5 h' }, { a: 'Día 2 · 8:00', b: 'Inducción SG-SST: riesgos del puesto, emergencias y EPP', c: 'Coordinador SST', d: '3 h' }, { a: 'Día 3 · 8:00', b: 'Presentación del equipo, procesos y herramientas del área', c: 'Jefe inmediato', d: '4 h' }, { a: 'Día 5 · 15:00', b: 'Cierre: resolución de dudas y encuesta de satisfacción', c: 'Talento Humano', d: '1 h' }]),
+                    D('3. Seguimiento', `Registre la asistencia en el formato TH-FR-11 y aplique la encuesta TH-FR-13 al finalizar la semana.`)])]
+        });
+        let S = (() => { try { const s = JSON.parse(localStorage.getItem(K)); if (OK(mig(s))) return s } catch (e) { } return init() })(), cur = 0, Q = '', edit = false, R = [], A = [], CL = [];
+        const $ = i => document.getElementById(i), save = () => { try { localStorage.setItem(K, JSON.stringify(S)) } catch (e) { } };
+        const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const ref = (o, k) => R.push([o, k]) - 1, btn = (l, f, c = 'mini') => `<button class="${c}" data-act="${A.push(f) - 1}">${l}</button>`;
+        const ed = (o, k, f) => edit || f ? `<span class="${edit ? 'edt' : ''}" contenteditable="plaintext-only" data-e="${ref(o, k)}">${esc(o[k])}</span>` : esc(o[k]);
+        function inp(t, o, k, x = {}) {
+            const i = ref(o, k), v = o[k] ?? '', a = `data-i="${i}"${x.b ? ` data-b="${x.b}"` : ''}`;
+            if (t == 'ta') return `<textarea class="ag" ${a} placeholder="${esc(x.ph)}">${esc(v)}</textarea>`;
+            if (t == 'se') return `<select ${a}>${['', ...(x.o || [])].filter((p, j) => j || !x.o.includes('')).map((p, j) => `<option value="${esc(p)}"${p == v ? ' selected' : ''}>${p || 'Seleccione…'}</option>`).join('')}</select>`;
+            if (t == 'ra') return `<div class="opts">${x.o.map(p => `<label><input type="radio" name="r${i}" ${a} value="${esc(p)}"${p == v ? ' checked' : ''}>${esc(p)}</label>`).join('')}</div>`;
+            if (t == 'mu') return `<div class="opts">${x.o.map(p => `<label><input type="checkbox" ${a} data-v="${esc(p)}"${(v || []).includes?.(p) ? ' checked' : ''}>${esc(p)}</label>`).join('')}</div>`;
+            if (t == 'ck') return `<label class="ck"><input type="checkbox" ${a}${v ? ' checked' : ''}>${x.tx || 'Completo'}</label>`;
+            if (!x.side && !['dt', 'nu', 'dl'].includes(t)) return `<textarea class="au" rows="1" ${a} placeholder="${esc(x.ph)}">${esc(v)}</textarea>`;
+            return `<input type="${{ dt: 'date', nu: 'number', dl: 'datetime-local', em: 'email' }[t] || 'text'}"${t == 'nu' && x.mx ? ` min="1" max="${x.mx}" step="0.5"` : ''} ${a} value="${esc(v)}" placeholder="${esc(x.ph)}">`
+        }
+        function fld(s, d, q) {
+            const o = d.b ? S.shared : d, k = d.b || 'v';
+            const tools = edit ? `<span class="noprint">${btn('↔', () => { d.full = !d.full; render() })} ${d.o && d.b != 'caso' ? btn('Opciones', () => { const r = prompt('Opciones separadas por coma', d.o.join(', ')); if (r != null) { d.o = r.split(',').map(x => x.trim()).filter(Boolean); render() } }) + ' ' : ''}${btn('✕', () => { s.f.splice(q, 1); render() })}</span>` : '';
+            return `<div class="fd${d.full ? ' full' : ''}"><label><span>${ed(d, 'l')}</span>${tools}</label>${inp(d.t, o, k, d)}</div>`
+        }
+        function addF(s) { const id = 'n' + A.length; return `<div class="add noprint"><select id="${id}">${Object.entries(TY).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select>${btn('+ Campo', () => { const t = $(id).value, d = { l: 'Nuevo campo', t, v: '' }; if (['se', 'ra', 'mu'].includes(t)) d.o = ['Opción 1', 'Opción 2']; if (t == 'mu') d.v = []; if (t == 'ta') d.full = 1; s.f.push(d); render() })}</div>` }
+        function tbl(s) {
+            const id = CL.push(s) - 1;
+            return `<table><thead><tr>${s.c.map(c => `<th style="width:${c.w || 'auto'}">${ed(c, 'l')}</th>`).join('')}<th class="noprint x"></th></tr></thead><tbody>${s.r.map((r, i) => `<tr>${s.c.map((c, j) => `<td>${c.t == 'x' ? ed(r, c.k, 1) : c.t == 'f' ? `<span class="fx" data-t="${id}" data-r="${i}" data-k="${j}"></span>` : inp(c.t, r, c.k, c)}</td>`).join('')}<td class="noprint x">${btn('✕', () => { s.r.splice(i, 1); render() })}</td></tr>`).join('')}</tbody></table><div class="add noprint">${btn('+ Fila', () => { s.r.push({}); render() })}<span class="calc" id="c${id}"></span></div>`
+        }
+        function sec(s) {
+            let h = `<h3>${ed(s, 't')}</h3>`;
+            if (s.k == 'f') h += `<div class="grid">${s.f.map((d, q) => fld(s, d, q)).join('')}</div>` + (edit ? addF(s) : '');
+            if (s.k == 't') h += tbl(s);
+            if (s.k == 'd') h += s.p.map((x, i) => `<div class="dp">${ed(s.p, i, 1)}${edit ? `<span class="noprint x2">${btn('✕', () => { s.p.splice(i, 1); render() })}</span>` : ''}</div>`).join('') + `<div class="add noprint">${btn('+ Párrafo', () => { s.p.push(''); render() })}${btn('Rellenar con datos del colaborador', () => fillDoc(s))}</div>`;
+            if (s.k == 'n') h += `<ul class="note">${s.l.map((x, q) => `<li>${ed(s.l, q, 1)}</li>`).join('')}</ul>`;
+            return `<div class="sec">${h}</div>`
+        }
+        const num = v => +String(v ?? '').replace(/[^\d-]/g, '') || 0, mo = n => '$' + n.toLocaleString('es-CO');
+        function fillDoc(s) {
+            const h = S.shared, m = { '[Empresa]': S.empresa, '[Nombre del trabajador]': h.nombre, '[Nombre del candidato]': h.nombre, '[Cédula]': h.cc, '[Cargo]': h.cargo, '[Área]': h.area, '[Jefe inmediato]': h.jefe, '[Tipo de contrato]': h.contrato, '[Nivel educativo]': h.educ, '[Experiencia requerida]': h.exp, '[Fecha de ingreso]': h.ingreso && h.ingreso.split('-').reverse().join('/') };
+            s.p = s.p.map(t => Object.entries(m).reduce((t, [k, v]) => v ? t.split(k).join(v) : t, t)); render()
+        }
+        function calc() {
+            CL.forEach((s, i) => {
+                const el = $('c' + i); if (!el) return; let h = '';
+                const sc = k => s.r.map(r => parseFloat(r[k])).filter(x => x > 0 && x <= 5), av = a => a.length ? a.reduce((x, y) => x + y) / a.length : 0;
+                if (s.avg) { const m = av(sc(s.avg)); h = m ? `Promedio <b>${m.toFixed(1)}</b> / 5` : 'Ingrese puntajes para ver el promedio' }
+                if (s.avgc) h = 'Promedio: ' + s.avgc.map(k => { const m = av(sc(k)); return `${esc(s.c.find(c => c.k == k).l)} <b>${m ? m.toFixed(1) : '-'}</b>` }).join(' · ');
+                if (s.prog) { const d = s.r.filter(r => r[s.prog] && (!s.pv || r[s.prog] == s.pv)).length, p = Math.round(d / (s.r.length || 1) * 100); h = `<span class="bar"><i style="width:${p}%"></i></span> ${d} de ${s.r.length} · <b>${p == 100 ? 'Completo' : p + '%'}</b>` }
+                if (s.tot) { const a = s.r.reduce((t, r) => t + num(r.b), 0), b = s.r.reduce((t, r) => t + num(r.c), 0); h = `Asignado <b>${mo(a)}</b> · Ejecutado <b>${mo(b)}</b> · Diferencia <b>${mo(a - b)}</b>` }
+                el.innerHTML = h
+            });
+            document.querySelectorAll('.fx').forEach(e => { const s = CL[e.dataset.t], r = s.r[e.dataset.r], c = s.c[e.dataset.k], v = num(r[c.f[0]]) - num(r[c.f[1]]); e.textContent = (r[c.f[0]] || r[c.f[1]]) ? (c.m ? mo(v) : v) : '' })
+        }
+        function clr() { if (!confirm('¿Limpiar los datos de este formato?')) return; S.forms[cur].secs.forEach(s => { if (s.k == 'f') s.f.forEach(d => { if (!d.b) d.v = d.t == 'mu' ? [] : '' }); if (s.k == 't') s.r.forEach(r => s.c.forEach(c => { if (c.t != 'x') delete r[c.k] })) }); render() }
+        function flt() {
+            const q = Q.toLowerCase(); let h = null, n = 0; const done = () => { if (h) h.style.display = n ? '' : 'none' };
+            document.querySelectorAll('.nav>*').forEach(e => { if (e.tagName == 'H4') { done(); h = e; n = 0 } else { const ok = e.textContent.toLowerCase().includes(q); e.style.display = ok ? '' : 'none'; n += ok } }); done()
+        }
+        function renderSigs(sig) {
+            if (!sig || !sig.length) return '';
+            return `<div class="sigs">${sig.map(g => `<div class="sig-card"><div class="sig-box">${g[2] ? `<div class="sig-prev"><img src="${esc(g[2])}" class="sig-img" alt="Firma"><button type="button" class="sig-del noprint" title="Eliminar firma" data-act="${A.push(() => { delete g[2]; if (g.length > 2) g.length = 2; save(); render() }) - 1}">✕</button></div>` : `<label class="sig-upload noprint" title="Haga clic para subir imagen de firma"><input type="file" accept="image/*" class="sig-file" style="display:none" data-sig="${ref(g, 2)}"><span class="sig-ico">✍️</span><span class="sig-txt">Subir firma</span></label>`}</div><div class="sig-info"><div>${ed(g, 0, 1)}</div><small>${ed(g, 1, 1)}</small></div></div>`).join('')}</div>`
+        }
+        function renderLogo() {
+            if (S.logo) return `<div class="lg"><div class="logo-prev"><img src="${esc(S.logo)}" class="logo-img" alt="Logo de la empresa"><button type="button" class="logo-del noprint" title="Eliminar logo" data-act="${A.push(() => { delete S.logo; save(); render() }) - 1}">✕</button></div></div>`;
+            return `<div class="lg"><label class="logo-upload noprint" title="Haga clic para subir logo de la empresa"><input type="file" accept="image/*" class="logo-file" style="display:none"><span class="logo-ico">🖼️</span><span class="logo-txt">Subir logo</span></label></div>`
+        }
+        const au = e => { e.style.height = 'auto'; if (e.scrollHeight) e.style.height = (e.scrollHeight + e.offsetHeight - e.clientHeight) + 'px' };
+        const fit = () => document.querySelectorAll('textarea.au, textarea.ag').forEach(au);
+        function render() {
+            R = []; A = []; CL = []; const sh = S.shared;
+            $('side').innerHTML = `<h1>📋 Talento Humano<br><span style="font-weight:400;font-size:12px;color:#8fa3d9">${S.forms.filter(f => !f.code.startsWith('TH-MD')).length} formatos y ${S.forms.filter(f => f.code.startsWith('TH-MD')).length} modelos interactivos</span></h1>
+ <input data-q placeholder="Buscar formato…" value="${esc(Q)}">
+ <details><summary style="cursor:pointer;font-size:12px;color:#8fa3d9;font-weight:600;margin-bottom:8px">Aspirante / Trabajador (se replica en los formatos)</summary>
+ ${[['nombre', 'Nombre completo'], ['cc', 'Cédula'], ['cargo', 'Cargo'], ['area', 'Área'], ['jefe', 'Jefe inmediato']].map(([k, l]) => `<label>${l}${inp('tx', sh, k, { b: k, side: 1 })}</label>`).join('')}
+ <label>Fecha de ingreso${inp('dt', sh, 'ingreso', { b: 'ingreso' })}</label></details>
+ <div class="nav">${[...new Set(S.forms.map(f => f.cat))].map(c => `<h4>${esc(c)}</h4>` + S.forms.map((f, n) => f.cat == c ? btn(`<small>${esc(f.code.replace('FR-', ''))}</small>${esc(f.short)}`, () => { cur = n; render() }, n == cur ? 'on' : '') : '').join('')).join('')}</div>
+ <div class="tools">${btn(edit ? 'Listo' : 'Personalizar', () => { edit = !edit; render() }, 'btn ' + (edit ? 'on' : ''))}${btn('Imprimir', () => print(), 'btn p')}
+ ${btn('Imprimir todo', () => { document.body.classList.add('pall'); print() }, 'btn')}${btn('Limpiar formato', clr, 'btn')}${btn('Exportar', exp, 'btn')}${btn('Importar', () => $('imp').click(), 'btn')}${btn('Restablecer', () => { if (confirm('Se borrarán todos los cambios y datos.')) { S = init(); save(); render() } }, 'btn')}</div>
+ ${edit ? '<p style="font-size:12px;color:#f5b82e">Modo personalizar: renombre títulos y etiquetas, cambie opciones, agregue o quite campos y filas.</p>' : ''}`;
+            $('main').innerHTML = S.forms.map((f, n) => { f.pag = f.pag || '1 de 1'; const isMD = f.code && f.code.startsWith('TH-MD'); const hdr = isMD ? `<header class="sh sh-md">${renderLogo()}<div class="tt"><div class="lg-name">${ed(S, 'empresa')}</div><h2>${ed(f, 'title')}</h2><p>${ed(f, 'sub')}</p></div></header>` : `<header class="sh">${renderLogo()}<div class="tt"><div class="lg-name">${ed(S, 'empresa')}</div><h2>${ed(f, 'title')}</h2><p>${ed(f, 'sub')}</p></div><div class="sh-info"><b>Código:</b> ${ed(f, 'code')}<br><b>Versión:</b> ${ed(S, 'ver')}<br><b>Fecha de emisión:</b> ${ed(S, 'fecha')}<br><b>Página:</b> ${ed(f, 'pag')}</div></header>`; return `<section class="sheet${n == cur ? ' on' : ''}">${hdr}${f.secs.map(sec).join('')}${renderSigs(f.sig)}</section>` }).join('');
+            calc(); flt(); fit()
+        }
+        function exp() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' })); a.download = 'formatos_talento_humano.json'; a.click() }
+        document.addEventListener('input', e => {
+            const t = e.target;
+            if (t.classList && (t.classList.contains('au') || t.classList.contains('ag'))) au(t);
+            if (t.dataset.q !== undefined) { Q = t.value; flt(); return }
+            if (t.dataset.e !== undefined) { const [o, k] = R[t.dataset.e]; o[k] = t.textContent; save(); return }
+            if (t.dataset.i === undefined) return; const [o, k] = R[t.dataset.i];
+            if (t.dataset.v !== undefined) { const a = o[k] = Array.isArray(o[k]) ? o[k] : [], j = a.indexOf(t.dataset.v); t.checked ? j < 0 && a.push(t.dataset.v) : j >= 0 && a.splice(j, 1) }
+            else o[k] = t.type == 'checkbox' ? t.checked : t.value;
+            if (t.dataset.b == 'caso') { const c = CASES.find(x => x.n == t.value); if (c) Object.assign(S.shared, c.p); save(); render(); return }
+            if (t.dataset.b) document.querySelectorAll(`[data-b="${t.dataset.b}"]`).forEach(n => { if (n !== t) { n.value = t.value; if (n.classList.contains('au')) au(n) } });
+            calc(); save()
+        });
+        function readImg(file, cb) { const r = new FileReader(); r.onload = ev => { const img = new Image(); img.onload = () => { try { const maxW = 500, maxH = 200; let w = img.width, h = img.height; if (w > maxW || h > maxH) { const ratio = Math.min(maxW / w, maxH / h); w = Math.round(w * ratio); h = Math.round(h * ratio) } const cvs = document.createElement('canvas'); cvs.width = w; cvs.height = h; const ctx = cvs.getContext('2d'); ctx.drawImage(img, 0, 0, w, h); cb(cvs.toDataURL(file.type == 'image/png' ? 'image/png' : 'image/jpeg', 0.88)) } catch (_) { cb(ev.target.result) } }; img.onerror = () => cb(ev.target.result); img.src = ev.target.result }; r.readAsDataURL(file) }
+        document.addEventListener('change', e => {
+            const t = e.target;
+            if (t && t.classList && t.classList.contains('sig-file')) { const file = t.files && t.files[0]; if (!file) return; readImg(file, dataUrl => { const [o, k] = R[t.dataset.sig]; o[k] = dataUrl; save(); render() }) }
+            if (t && t.classList && t.classList.contains('logo-file')) { const file = t.files && t.files[0]; if (!file) return; readImg(file, dataUrl => { S.logo = dataUrl; save(); render() }) }
+        });
+        document.addEventListener('dragover', e => { if (e.target.closest && (e.target.closest('.sig-upload') || e.target.closest('.logo-upload'))) e.preventDefault() });
+        document.addEventListener('drop', e => {
+            const sigUp = e.target.closest && e.target.closest('.sig-upload');
+            if (sigUp) { e.preventDefault(); const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (!file || !file.type.startsWith('image/')) return; const inp = sigUp.querySelector('.sig-file'); if (!inp) return; readImg(file, dataUrl => { const [o, k] = R[inp.dataset.sig]; o[k] = dataUrl; save(); render() }); return }
+            const logoUp = e.target.closest && e.target.closest('.logo-upload');
+            if (logoUp) { e.preventDefault(); const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (!file || !file.type.startsWith('image/')) return; readImg(file, dataUrl => { S.logo = dataUrl; save(); render() }); return }
+        });
+        document.addEventListener('click', e => { const b = e.target.closest('[data-act]'); if (b) A[b.dataset.act]() });
+        $('imp').onchange = e => { const f = e.target.files[0]; if (!f) return; f.text().then(x => { try { const s = mig(JSON.parse(x)); if (!OK(s)) throw 0; S = s; save(); render() } catch (_) { alert('El archivo no es un respaldo válido de este kit de formatos.') } }) };
+        document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.classList && e.target.classList.contains('au')) e.preventDefault() });
+        addEventListener('resize', fit); addEventListener('load', fit); onbeforeprint = fit;
+        onafterprint = () => document.body.classList.remove('pall');
+        render();
+    </script>
+</body>
+
+</html>
